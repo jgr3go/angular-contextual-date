@@ -18,9 +18,6 @@
   "homepage": "https://github.com/Helioscene/angular-contextual-date",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
     "tests"
   ],
   "dependencies": {
