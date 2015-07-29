@@ -1,0 +1,46 @@
+{
+  "name": "angular-contextual-date",
+  "version": "0.1.0",
+  "description": "Angular directive/filter/service to format a date so it displays a contextual relative time from \"now\" in addition to the formatted normal date.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install",
+    "pretest": "npm install",
+    "test": "karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Helioscene/angular-contextual-date.git"
+  },
+  "keywords": [
+    "angular",
+    "relative",
+    "date",
+    "time",
+    "ago",
+    "contextual"
+  ],
+  "author": "Helioscene",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Helioscene/angular-contextual-date/issues"
+  },
+  "homepage": "https://github.com/Helioscene/angular-contextual-date#readme",
+  "devDependencies": {
+    "bower": "^1.4.1",
+    "chai": "^3.2.0",
+    "jasmine": "^2.3.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.3",
+    "karma-chai": "^0.1.0",
+    "karma-chai-sinon": "^0.1.5",
+    "karma-jasmine": "^0.3.6",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-sinon": "^1.0.4",
+    "mocha": "^2.2.5",
+    "phantomjs": "^1.9.17",
+    "sinon": "^1.15.4",
+    "sinon-chai": "^2.8.0"
+  }
+}

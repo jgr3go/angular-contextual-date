@@ -1,0 +1,33 @@
+{
+  "name": "angular-contextual-date",
+  "version": "0.1.0",
+  "authors": [
+    "Helioscene"
+  ],
+  "description": "Angular directive/filter/service to format a date so it displays a contextual relative time from \"now\" in addition to the formatted normal date.",
+  "main": "src/angular-contextual-date.module.js",
+  "keywords": [
+    "angular",
+    "relative",
+    "date",
+    "time",
+    "ago",
+    "contextual"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Helioscene/angular-contextual-date",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3"
+  },
+  "devDependencies": {
+    "bardjs": "~0.1.4",
+    "angular-mocks": "~1.4.3"
+  }
+}
