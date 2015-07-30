@@ -2,7 +2,7 @@
 
 Angular directive/filter/service to format a date so it displays a contextual "time ago" relative component in addition to the date. This is useful for things like feeds, emails, comments, etc. to show how recent the timestamp occurred in addition to simplifying the date display to a more relevant format.
 
-* [Examples](#examples)
+* [Examples/Demo](#examples)
 * [Glossary](#glossary)
 * [Usage](#usage)
 * [Configuration](#configuration)
@@ -19,6 +19,9 @@ Angular directive/filter/service to format a date so it displays a contextual "t
 * Jul 15 at 10:00 am (1 week ago)
 * Mar 30 (4 months ago)
 * Jun 14, 2014 (1 year ago)
+
+## Demo
+See a working demo here: http://helioscene.github.io/angular-contextual-date/
 
 <a name="glossary"></a>
 ## Glossary  
