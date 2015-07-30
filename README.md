@@ -112,10 +112,10 @@ contextualDateService.fullDateFormats.<option> = <format>;
 
 |Option|Description|
 |:--|:--|
-|`fullDateFormats.today`|<span>Applied to dates up to one day prior<br/>Default: `"h:mm a"`<br/>Example: **2:38 pm**</span>|
-|`fullDateFormats.thisMonth`|<span>Applied to dates from one day to one month prior<br/>Default: `"MMM d 'at' h:mm a"`<br/>Example: **Jul 23 at 2:38 pm**</span>|
-|`fullDateFormats.thisYear`|<span>Applied to dates from one month to one year prior<br/>Default: `"MMM d"`<br/>Example: **Jul 14**</span>|
-|`fullDateFormats.historical`|<span>Applied to dates over one year prior<br/>Default: `"MMM d, y"`<br/>Example: **Jul 14, 2014**</span>|
+|`today`|<span>Applied to dates up to one day prior<br/>Default: `"h:mm a"`<br/>Example: **2:38 pm**</span>|
+|`thisMonth`|<span>Applied to dates from one day to one month prior<br/>Default: `"MMM d 'at' h:mm a"`<br/>Example: **Jul 23 at 2:38 pm**</span>|
+|`thisYear`|<span>Applied to dates from one month to one year prior<br/>Default: `"MMM d"`<br/>Example: **Jul 14**</span>|
+|`historical`|<span>Applied to dates over one year prior<br/>Default: `"MMM d, y"`<br/>Example: **Jul 14, 2014**</span>|
   
 
 ### `config.contextualDateFormat`
