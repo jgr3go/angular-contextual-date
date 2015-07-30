@@ -152,3 +152,10 @@ contextualDateService.config.language = 'en_US';
 ```
 
 * Default: `en_US`
+
+
+## Contact
+Contact [Jon Gregorowicz](mailto:jon@helioscene.com) for any questions, or submit a pull request. 
+
+## Contributing
+If you want to contribute, we welcome pull requests! Please follow our [contributing guide](CONTRIBUTING.md). 
