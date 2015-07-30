@@ -2,11 +2,11 @@
   "name": "angular-contextual-date",
   "version": "0.1.0",
   "description": "Angular directive/filter/service to format a date so it displays a contextual relative time from \"now\" in addition to the formatted normal date.",
-  "main": "index.js",
+  "main": "src/angular-contextual-date.module.js",
   "scripts": {
     "postinstall": "bower install",
     "pretest": "npm install",
-    "test": "karma start karma.conf.js"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,8 @@
     "date",
     "time",
     "ago",
-    "contextual"
+    "contextual",
+    "filter"
   ],
   "author": "Helioscene",
   "license": "MIT",
