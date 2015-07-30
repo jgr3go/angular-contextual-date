@@ -106,37 +106,17 @@ This will remove the `fullDate` portion of the `contextual-date`. Instead of `11
 ### `config.fullDateFormats`  
 `fullDateFormats` contains four formats for the `fullDate` component of a `contextual-date`.  They all use the [Angular `date` format](https://docs.angularjs.org/api/ng/filter/date) to generate the result.
 
-#### `fullDateFormats.today`
-Default: `"h:mm a"`  
-Example: **2:38 pm**  
 ```javascript
-contextualDateService.config.fullDateFormats.today = "h:mm a";
-```  
-This format will be applied to dates up to one day prior.
+contextualDateService.fullDateFormats.<option> = <format>;
+```
 
-#### `fullDateFormats.thisMonth`
-Default: `"MMM d 'at' h:mm a"`  
-Example: **Jul 23 at 2:38 pm**  
-```javascript
-contextualDateService.config.fullDateFormats.thisMonth = "MMM d 'at' h:mm a";
-```  
-This format will be applied to dates one day to one month prior  
-
-#### `fullDateFormats.thisYear`  
-Default: `"MMM d"`  
-Example: **Jul 15**  
-```javascript
-contextualDateService.config.fullDateFormats.thisYear = "MMM d";
-```  
-This format will be applied to dates one month to one year prior  
-
-#### `fullDateFormats.historical`
-Default: `"MMM d, y"`  
-Example: **Jul 14, 2014**  
-```javascript
-contextualDateService.config.fullDateFormats.historical = "MMM d, y";
-```  
-This format will be applied to dates over a year prior 
+|Option|Description|
+|:--|:--|
+|`fullDateFormats.today`|<span>Applied to dates up to one day prior<br/>Default: `"h:mm a"`<br/>Example: **2:38 pm**</span>|
+|`fullDateFormats.thisMonth`|<span>Applied to dates from one day to one month prior<br/>Default: `"MMM d 'at' h:mm a"`<br/>Example: **Jul 23 at 2:38 pm**</span>|
+|`fullDateFormats.thisYear`|<span>Applied to dates from one month to one year prior<br/>Default: `"MMM d"`<br/>Example: **Jul 14**</span>|
+|`fullDateFormats.historical`|<span>Applied to dates over one year prior<br/>Default: `"MMM d, y"`<br/>Example: **Jul 14, 2014**</span>|
+  
 
 ### `config.contextualDateFormat`
 Default: `"%fullDate% (%relativeDate%)"`  
