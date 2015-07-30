@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -18,6 +18,7 @@ module.exports = function(config) {
       'bower_components/angular/angular.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/bardjs/dist/bard.js',
+      'bower_components/sinon/index.js',
       'src/*.module.js',
       'src/*.js',
       'tests/*.spec.js',
@@ -75,6 +76,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: false
   });
 }

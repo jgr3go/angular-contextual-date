@@ -15,13 +15,13 @@ describe('contextualDateService', function () {
         it('should parse a Date', function () {
             var date = new Date();
             var parsed = contextualDateService.parseDate(date);
-            expect(date.getTime()).to.be.equal(parsed.getTime());
+            expect(date.getTime()).toEqual(parsed.getTime());
         });
 
         it('should parse an ISO string', function () {
             var date = new Date();
             var parsed = contextualDateService.parseDate(date.toISOString());
-            expect(date.getTime()).to.be.equal(parsed.getTime());
+            expect(date.getTime()).toEqual(parsed.getTime());
         });
 
         it('should parse a UTC string', function () {
@@ -29,19 +29,19 @@ describe('contextualDateService', function () {
             var parsed = contextualDateService.parseDate(date.toUTCString());
 
             // UTC strings lose milliseconds
-            expect(Math.abs(date.getTime() - parsed.getTime()) <= 1000).to.be.equal(true, "date:" + date + ",parsed:" + parsed);
+            expect(Math.abs(date.getTime() - parsed.getTime()) <= 1000).toEqual(true, "date:" + date + ",parsed:" + parsed);
         });
 
         it('should parse an integer date', function () {
             var date = new Date();
             var parsed = contextualDateService.parseDate(date.getTime());
-            expect(date.getTime()).to.be.equal(parsed.getTime());
+            expect(date.getTime()).toEqual(parsed.getTime());
         });
 
         it('should parse a string integer date', function () {
             var date = new Date();
             var parsed = contextualDateService.parseDate("" + date.getTime());
-            expect(date.getTime()).to.be.equal(parsed.getTime());
+            expect(date.getTime()).toEqual(parsed.getTime());
         });
 
     });
@@ -52,98 +52,98 @@ describe('contextualDateService', function () {
             var date = new Date();
             date.setFullYear(date.getFullYear() - 2);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 2, lang.years, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 2, lang.years, lang.suffix].join(" ").trim());
         });
 
         it('should return year', function () {
             var date = new Date();
             date.setFullYear(date.getFullYear() - 1);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 1, lang.year, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.year, lang.suffix].join(" ").trim());
         });
 
         it('should return months', function () {
             var date = new Date();
             date.setDate(date.getDate() - 65);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 2, lang.months, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 2, lang.months, lang.suffix].join(" ").trim());
         });
 
         it('should return month', function () {
             var date = new Date();
             date.setDate(date.getDate() - 31);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 1, lang.month, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.month, lang.suffix].join(" ").trim());
         });
 
         it('should return weeks', function () {
             var date = new Date();
             date.setDate(date.getDate() - 21);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 3, lang.weeks, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 3, lang.weeks, lang.suffix].join(" ").trim());
         });
 
         it('should return week', function () {
             var date = new Date();
             date.setDate(date.getDate() - 7);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 1, lang.week, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.week, lang.suffix].join(" ").trim());
         });
 
         it('should return days', function () {
             var date = new Date();
             date.setDate(date.getDate() - 3);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 3, lang.days, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 3, lang.days, lang.suffix].join(" ").trim());
         });
 
         it('should return day', function () {
             var date = new Date();
             date.setDate(date.getDate() - 1);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 1, lang.day, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.day, lang.suffix].join(" ").trim());
         });
 
         it('should return hours', function () {
             var date = new Date();
             date.setHours(date.getHours() - 3);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 3, lang.hours, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 3, lang.hours, lang.suffix].join(" ").trim());
         });
 
         it('should return hour', function () {
             var date = new Date();
             date.setHours(date.getHours() - 1);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 1, lang.hour, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.hour, lang.suffix].join(" ").trim());
         });
 
         it('should return minutes', function () {
             var date = new Date();
             date.setMinutes(date.getMinutes() - 3);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 3, lang.minutes, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 3, lang.minutes, lang.suffix].join(" ").trim());
         });
 
         it('should return minute', function () {
             var date = new Date();
             date.setMinutes(date.getMinutes() - 1);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 1, lang.minute, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.minute, lang.suffix].join(" ").trim());
         });
     
         it('should return seconds', function () {
             var date = new Date();
             date.setSeconds(date.getSeconds() - 3);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 3, lang.seconds, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 3, lang.seconds, lang.suffix].join(" ").trim());
         });
 
         it('should return second', function () {
             var date = new Date();
             date.setSeconds(date.getSeconds() - 1);
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal([lang.prefix, 1, lang.second, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.second, lang.suffix].join(" ").trim());
         });
 
         it('should return milliseconds', function () {
@@ -155,7 +155,7 @@ describe('contextualDateService', function () {
             
             var converted = contextualDateService.formatRelative(date, now);
 
-            expect(converted).to.be.equal([lang.prefix, 3, lang.milliseconds, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 3, lang.milliseconds, lang.suffix].join(" ").trim());
         });
 
         it('should return millisecond', function () {
@@ -167,7 +167,7 @@ describe('contextualDateService', function () {
             
             var converted = contextualDateService.formatRelative(date, now);
 
-            expect(converted).to.be.equal([lang.prefix, 1, lang.millisecond, lang.suffix].join(" ").trim());
+            expect(converted).toEqual([lang.prefix, 1, lang.millisecond, lang.suffix].join(" ").trim());
         });
 
         it('should return now', function () {
@@ -178,14 +178,14 @@ describe('contextualDateService', function () {
             
             var converted = contextualDateService.formatRelative(date, now);
 
-            expect(converted).to.be.equal(lang.now);
+            expect(converted).toEqual(lang.now);
         });
 
 
         it('should return bad input untouched', function () {
             var date = "garbage";
             var converted = contextualDateService.formatRelative(date);
-            expect(converted).to.be.equal(date);
+            expect(converted).toEqual(date);
         });
     });
 
@@ -195,7 +195,7 @@ describe('contextualDateService', function () {
             var converted = contextualDateService.formatFull(date);
             var today = $filter('date')(date, contextualDateService.config.fullDateFormats.today);
 
-            expect(converted).to.be.equal(today);
+            expect(converted).toEqual(today);
         });
 
         it('should format this month format', function () {
@@ -204,7 +204,7 @@ describe('contextualDateService', function () {
             var converted = contextualDateService.formatFull(date);
             var thisMonth = $filter('date')(date, contextualDateService.config.fullDateFormats.thisMonth);
 
-            expect(converted).to.be.equal(thisMonth);
+            expect(converted).toEqual(thisMonth);
         });
 
         it('should format this year format', function () {
@@ -212,7 +212,7 @@ describe('contextualDateService', function () {
             date.setDate(date.getDate() - 60);
             var converted = contextualDateService.formatFull(date);
             var thisYear = $filter('date')(date, contextualDateService.config.fullDateFormats.thisYear);
-            expect(converted).to.be.equal(thisYear);
+            expect(converted).toEqual(thisYear);
         });
 
         it('should format the historical format', function () {
@@ -221,13 +221,13 @@ describe('contextualDateService', function () {
             var converted = contextualDateService.formatFull(date);
             var historical = $filter('date')(date, contextualDateService.config.fullDateFormats.historical);
 
-            expect(converted).to.be.equal(historical);
+            expect(converted).toEqual(historical);
         });
 
         it('should return bad input untouched', function () {
             var date = "garbage";
             var converted = contextualDateService.formatFull(date);
-            expect(converted).to.be.equal(date);
+            expect(converted).toEqual(date);
         });
 
     });
@@ -236,12 +236,12 @@ describe('contextualDateService', function () {
         it('should format the relative and full portions of the date', function () {
             var date = new Date();
             date.setDate(date.getDate() - 3);
-            var formatFullSpy = sinon.spy(contextualDateService, "formatFull");
-            var formatRelativeSpy = sinon.spy(contextualDateService, "formatRelative");
+            spyOn(contextualDateService, "formatFull").and.callThrough();
+            spyOn(contextualDateService, "formatRelative").and.callThrough();
             var converted = contextualDateService.format(date);
 
-            expect(formatFullSpy).to.have.been.calledOnce;
-            expect(formatRelativeSpy).to.have.been.calledOnce;
+            expect(contextualDateService.formatFull).toHaveBeenCalled();
+            expect(contextualDateService.formatRelative).toHaveBeenCalled();
         });
 
         it('should respect the override', function () {
@@ -252,13 +252,13 @@ describe('contextualDateService', function () {
             var format = contextualDateService.config.contextualDateFormat;
             var formatted = format.replace('%fullDate%', override).replace('%relativeDate%', "3 days ago");
 
-            expect(formatted).to.be.equal(converted);
+            expect(formatted).toEqual(converted);
         });
 
         it('should return invalid input untouched', function () {
             var date = "garbage";
             var converted = contextualDateService.format(date);
-            expect(converted).to.be.equal(date);
+            expect(converted).toEqual(date);
         });
     });
 
@@ -267,8 +267,8 @@ describe('contextualDateService', function () {
         var formatFullSpy, formatRelativeSpy;
 
         beforeEach(function () {
-            formatFullSpy = sinon.spy(contextualDateService, "formatFull");
-            formatRelativeSpy = sinon.spy(contextualDateService, "formatRelative");
+            spyOn(contextualDateService, "formatFull").and.callThrough();
+            spyOn(contextualDateService, "formatRelative").and.callThrough();
         });
 
         it('should only display the relative format', function () {
@@ -279,9 +279,9 @@ describe('contextualDateService', function () {
             var converted = contextualDateService.format(date);
             var relativeDate = contextualDateService.formatRelative(date);
 
-            expect(converted).to.be.equal(relativeDate);
-            expect(formatRelativeSpy).to.have.been.calledTwice;
-            expect(formatFullSpy).to.have.not.been.called;
+            expect(converted).toEqual(relativeDate);
+            expect(contextualDateService.formatRelative.calls.count()).toEqual(2);
+            expect(contextualDateService.formatFull).not.toHaveBeenCalled();
 
         });
 
@@ -291,7 +291,7 @@ describe('contextualDateService', function () {
             contextualDateService.config.fullDateFormats.today = "yyyy";
             var relativeDate = contextualDateService.formatFull(date);
 
-            expect(relativeDate).to.be.equal("" + date.getFullYear());
+            expect(relativeDate).toEqual("" + date.getFullYear());
         });
 
         it('should modify the thresholds', function () {
@@ -302,9 +302,9 @@ describe('contextualDateService', function () {
             contextualDateService.config.thresholds.week = 1.5;
             var rel2 = contextualDateService.formatRelative(date);
 
-            expect(rel1).to.not.be.equal(rel2);
-            expect(rel1).to.be.equal([lang.prefix, 1, lang.week, lang.suffix].join(" ").trim());
-            expect(rel2).to.be.equal([lang.prefix, 8, lang.days, lang.suffix].join(" ").trim());
+            expect(rel1).not.toEqual(rel2);
+            expect(rel1).toEqual([lang.prefix, 1, lang.week, lang.suffix].join(" ").trim());
+            expect(rel2).toEqual([lang.prefix, 8, lang.days, lang.suffix].join(" ").trim());
         });
 
         it('should take language from DOM', function () {
@@ -314,7 +314,7 @@ describe('contextualDateService', function () {
             date.setDate(date.getDate() - 1);
             var converted = contextualDateService.formatRelative(date);
 
-            expect(converted).to.be.equal("1 wassup");
+            expect(converted).toEqual("1 wassup");
         });
 
         it('should take language from config', function () {
@@ -324,7 +324,7 @@ describe('contextualDateService', function () {
             date.setDate(date.getDate() - 1);
             var converted = contextualDateService.formatRelative(date);
 
-            expect(converted).to.be.equal("1 !!!");
+            expect(converted).toEqual("1 !!!");
         });
 
         it("should prioritize config over DOM", function () {
@@ -337,7 +337,7 @@ describe('contextualDateService', function () {
             date.setDate(date.getDate() - 1);
             var converted = contextualDateService.formatRelative(date);
 
-            expect(converted).to.be.equal("1 CONF");
+            expect(converted).toEqual("1 CONF");
         });
 
         it("should ignore bad configurations", function () {
@@ -348,7 +348,7 @@ describe('contextualDateService', function () {
             date.setDate(date.getDate() - 1);
             var converted = contextualDateService.formatRelative(date);
 
-            expect(converted).to.be.equal("1 day ago");
+            expect(converted).toEqual("1 day ago");
         });
     });
 
