@@ -6,6 +6,9 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var karma = require('karma').Server;
 var path = require('path');
+var open = require('open');
+var jshint = require('gulp-jshint');
+var jscs = require('gulp-jscs');
 
 var config = {
   source: ["src/*.module.js", "src/*.js"],
@@ -16,7 +19,8 @@ var config = {
   },
   karma: {
     config: "karma.conf.js"
-  }
+  },
+  demo : "demo/index.html"
 };
 
 
@@ -45,9 +49,21 @@ gulp.task('build', function (done) {
   runSequence('clean', ['minify', 'maxify'], done);
 });
 
-gulp.task('test', function (done) {
+gulp.task('test', ['lint'], function (done) {
   new karma({
     configFile: path.join(__dirname, config.karma.config),
     singleRun: true
   }, done).start();
 });
+
+gulp.task('demo', function (done) {
+  open(path.join(__dirname, config.demo));
+});
+
+gulp.task('lint', function (done) {
+  return gulp.src(config.source)
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'))
+    .pipe(jscs());
+}); 
