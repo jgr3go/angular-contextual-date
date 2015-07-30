@@ -1,7 +1,16 @@
 # contextual-date
 
-Angular directive/filter/service to format a date so it displays a contextual "time ago" relative component in addition to the date. 
+Angular directive/filter/service to format a date so it displays a contextual "time ago" relative component in addition to the date. This is useful for things like feeds, emails, comments, etc. to show how recent the timestamp occurred in addition to simplifying the date display to a more relevant format.
 
+* [Examples](#examples)
+* [Glossary](#glossary)
+* [Usage](#usage)
+* [Configuration](#configuration)
+* [Language Support](#languages)
+* [Contact](#contact)
+* [Contributing](#contributing)
+
+<a name="examples"></a>
 ## Examples
 
 * 11:15 am (7 minutes ago)
@@ -11,6 +20,7 @@ Angular directive/filter/service to format a date so it displays a contextual "t
 * Mar 30 (4 months ago)
 * Jun 14, 2014 (1 year ago)
 
+<a name="glossary"></a>
 ## Glossary  
 
 |Term|Meaning|
@@ -19,9 +29,10 @@ Angular directive/filter/service to format a date so it displays a contextual "t
 |`fullDate`|The component of a `contextual-date` that displays the real date. e.g. **Jul 25 at 2:38 pm**|
 |`relativeDate`|The component of a `contextual-date` that displays the relative time. e.g. **2 days ago**|
 
+<a name="usage"></a>
 ## Usage
 
-`contextual-date` can be used as a filter or an element. The service can also be directly called if you want to use the results yourself. 
+`contextual-date` can be used as a filter or an element. The service can also be directly called if you want to use the results yourself, though normally you probably won't need to. 
 
 ### Filter
 ```html 
@@ -74,6 +85,7 @@ contextualDateService.format($scope.myDate, "Mah date!!");
 // Mah date!! (7 minutes ago)
 ```
 
+<a name="configuration"></a>
 ## Configuration
 To configure the service, you can use the following code:  
 ```javascript
@@ -100,7 +112,7 @@ Example: **2:38 pm**
 ```javascript
 contextualDateService.config.fullDateFormats.today = "h:mm a";
 ```  
-This format will be applied to dates up to 24 hours prior.
+This format will be applied to dates up to one day prior.
 
 #### `fullDateFormats.thisMonth`
 Default: `"MMM d 'at' h:mm a"`  
@@ -108,7 +120,7 @@ Example: **Jul 23 at 2:38 pm**
 ```javascript
 contextualDateService.config.fullDateFormats.thisMonth = "MMM d 'at' h:mm a";
 ```  
-This format will be applied to dates 24 hours to one month prior  
+This format will be applied to dates one day to one month prior  
 
 #### `fullDateFormats.thisYear`  
 Default: `"MMM d"`  
@@ -153,9 +165,10 @@ contextualDateService.config.language = 'en_US';
 
 * Default: `en_US`
 
-
+<a name="contact"></a>
 ## Contact
 Contact [Jon Gregorowicz](mailto:jon@helioscene.com) for any questions, or submit a pull request. 
 
+<a name="contributing"></a>
 ## Contributing
 If you want to contribute, we welcome pull requests! Please follow our [contributing guide](CONTRIBUTING.md). 
