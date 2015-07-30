@@ -1,4 +1,4 @@
-  # contextual-date
+# contextual-date
 
 Angular directive/filter/service to format a date so it displays a contextual "time ago" relative component in addition to the date. 
 
@@ -21,7 +21,7 @@ Angular directive/filter/service to format a date so it displays a contextual "t
 
 ## Usage
 
-`hs-contextual-date` can be used as a filter or an element. The service can also be directly called if you want to use the results yourself. 
+`contextual-date` can be used as a filter or an element. The service can also be directly called if you want to use the results yourself. 
 
 ### Filter
 ```html 
@@ -30,12 +30,12 @@ Angular directive/filter/service to format a date so it displays a contextual "t
 
 ### Element 
 ```html
-<hs-contextual-date datetime="myDate"></hs-contextual-date>
+<contextual-date datetime="myDate"></contextual-date>
 ```
 
 The element also takes in a `full-date-override` property if you want to override the `fullDate` component with your own string. 
 ```html 
-<hs-contextual-date datetime="myDate" full-date-override="myFormattedDate"></hs-contextual-date>
+<contextual-date datetime="myDate" full-date-override="myFormattedDate"></contextual-date>
 ```
 See the Service's [fullDateOverride](#fullDateOverride) section
 
@@ -137,7 +137,7 @@ This will set the language `contextual-date` will use. See [Language Support](#l
 
 <a name="languages"></a>
 ## Language support
-Right now, `hs-contextual-date` only supports `en_US`.  It was built to support multiple languages, so pull requests could add support for them.
+Right now, `contextual-date` only supports `en_US`.  It was built to support multiple languages, so pull requests could add support for them.
 
 There are two ways it attempts to detect the language:  
 * Priority 1: service configuration 
