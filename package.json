@@ -31,10 +31,13 @@
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-jscs": "^2.0.0",
+    "gulp-jshint": "^1.11.2",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "jasmine": "^2.3.1",
     "jasmine-core": "^2.3.4",
+    "jshint-stylish": "^2.0.1",
     "karma": "^0.13.3",
     "karma-coverage": "^0.4.2",
     "karma-jasmine": "^0.3.6",
@@ -42,6 +45,6 @@
     "karma-sinon": "^1.0.4",
     "open": "0.0.5",
     "phantomjs": "^1.9.17",
-    "run-sequence": "^1.1.2",
+    "run-sequence": "^1.1.2"
   }
 }

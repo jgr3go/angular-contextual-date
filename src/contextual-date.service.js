@@ -154,12 +154,7 @@ function contextualDateService ($filter, $document) {
         return Array.prototype.join.call(arguments, " ").trim();
     }
 
-    function formatRelative(date, now) {
-        var ldate = service.parseDate(date);
-        if (isNaN(ldate)) { return date; }
-
-        now = now || new Date();
-
+    function getLang() {
         var slang = service.config.language;
         var dlang = $document[0].documentElement.lang;
         var lang;
@@ -173,6 +168,16 @@ function contextualDateService ($filter, $document) {
         if (!lang) {
             lang = service.languages.en_US;
         }
+
+        return lang;
+    }
+
+    function formatRelative(date, now) {
+        var ldate = service.parseDate(date);
+        if (isNaN(ldate)) { return date; }
+        now = now || new Date();
+
+        var lang = getLang();
         var diff = now.getTime() - ldate.getTime();
 
         var milliseconds = diff;
