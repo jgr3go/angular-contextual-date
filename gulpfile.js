@@ -6,6 +6,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var karma = require('karma').Server;
 var path = require('path');
+var open = require('open');
 
 var config = {
   source: ["src/*.module.js", "src/*.js"],
@@ -16,7 +17,8 @@ var config = {
   },
   karma: {
     config: "karma.conf.js"
-  }
+  },
+  demo : "demo/index.html"
 };
 
 
@@ -50,4 +52,8 @@ gulp.task('test', function (done) {
     configFile: path.join(__dirname, config.karma.config),
     singleRun: true
   }, done).start();
+});
+
+gulp.task('demo', function (done) {
+  open(path.join(__dirname, config.demo));
 });

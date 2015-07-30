@@ -11,18 +11,17 @@ describe('contextualDateFilter', function () {
         lang = contextualDateService.languages.en_US;
         past = lang.past;
 
-        sinon.stub(contextualDateService, 'format');
+        spyOn(contextualDateService, "format");
     });
-
 
     describe("filter calls contextualDateService service", function () {
 
         it('should call the service', function () {
             var date = new Date();
-            contextualDateFilter(date);
+            contextualDateFilter(date, null);
 
-            expect(contextualDateService.format).to.have.been.calledOnce;
-            expect(contextualDateService.format).to.have.been.calledWith(date);
+            expect(contextualDateService.format.calls.count()).toEqual(1);
+            expect(contextualDateService.format).toHaveBeenCalledWith(date, null, null);
         });
     });
 

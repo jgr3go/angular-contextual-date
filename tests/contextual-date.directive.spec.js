@@ -43,11 +43,11 @@ describe('contextualDateDirective', function () {
         }));
 
         it('should be defined', function () {
-            expect(element).to.exist;
-            expect(ctrl).to.exist;
+            expect(element).toBeDefined();
+            expect(ctrl).toBeDefined();
 
-            expect(ctrl.datetime).to.be.equal(scope.datetime);
-            expect(ctrl.timezone).to.be.equal(scope.timezone);
+            expect(ctrl.datetime).toEqual(scope.datetime);
+            expect(ctrl.timezone).toEqual(scope.timezone);
         });
 
         describe("values changed", function () {
@@ -67,8 +67,8 @@ describe('contextualDateDirective', function () {
                 element.scope().$apply();
 
                 // verify scope == ctrl
-                expect(scope.datetime).to.be.equal(ctrl.datetime);
-                expect(scope.timezone).to.be.equal(ctrl.timezone);
+                expect(scope.datetime).toEqual(ctrl.datetime);
+                expect(scope.timezone).toEqual(ctrl.timezone);
             });
 
             it("should replicate outgoing changes: =scopes: [datetime, timezone]", function () {
@@ -79,8 +79,8 @@ describe('contextualDateDirective', function () {
                 element.scope().$apply();
 
                 // verify scope not affected
-                expect(scope.datetime).to.be.equal(ctrl.datetime);
-                expect(scope.timezone).to.be.equal(ctrl.timezone);
+                expect(scope.datetime).toEqual(ctrl.datetime);
+                expect(scope.timezone).toEqual(ctrl.timezone);
             });
         });
         
@@ -103,10 +103,10 @@ describe('contextualDateDirective', function () {
         }));
 
         it('should be defined', function () {
-            expect(element).to.exist;
-            expect(ctrl).to.exist;
+            expect(element).toBeDefined();
+            expect(ctrl).toBeDefined();
 
-            expect(ctrl.datetime).to.be.equal(scope.datetime);
+            expect(ctrl.datetime).toEqual(scope.datetime);
         });
     });
 
