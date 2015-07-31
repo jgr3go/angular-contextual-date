@@ -5,7 +5,7 @@
     "Helioscene",
     "jgr3go"
   ],
-  "description": "Angular directive/filter/service to format a date so it displays a contextual relative time from \"now\" in addition to the formatted normal date.",
+  "description": "A lightweight Angular directive/filter/service to format a date so it displays a contextual relative time (\"how long ago\") in addition to the formatted normal date.",
   "main": "dist/angular-contextual-date.js",
   "keywords": [
     "angular",
@@ -14,7 +14,8 @@
     "time",
     "ago",
     "contextual",
-    "filter"
+    "filter",
+    "moment"
   ],
   "license": "MIT",
   "homepage": "https://github.com/Helioscene/angular-contextual-date",

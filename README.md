@@ -1,6 +1,6 @@
 # contextual-date
 
-Angular directive/filter/service to format a date so it displays a contextual "time ago" relative component in addition to the date. This is useful for things like feeds, emails, comments, etc. to show how recent the timestamp occurred in addition to simplifying the date display to a more relevant format.
+A lightweight Angular directive/filter/service to format a date so it displays a contextual relative time ("how long ago") in addition to the date. This is useful for things like feeds, emails, comments, etc. to show how recent the timestamp occurred in addition to simplifying the date display to a more relevant format.
 
 * [Examples/Demo](#examples)
 * [Glossary](#glossary)
