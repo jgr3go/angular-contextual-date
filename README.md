@@ -2,6 +2,7 @@
 
 A lightweight Angular directive/filter/service to format a date so it displays a contextual relative time ("how long ago") in addition to the date. This is useful for things like feeds, emails, comments, etc. to show how recent the timestamp occurred in addition to simplifying the date display to a more relevant format.
 
+* [Goals](#goals)
 * [Examples/Demo](#examples)
 * [Glossary](#glossary)
 * [Usage](#usage)
@@ -9,6 +10,13 @@ A lightweight Angular directive/filter/service to format a date so it displays a
 * [Language Support](#languages)
 * [Contact](#contact)
 * [Contributing](#contributing)
+
+<a name="goals"></a>
+## Goals
+The goals of this module are twofold:
+1. We did not want to use am-time-ago in [moment.js](http://momentjs.com) because while the library is great, we *really* didn't want to have to load all of [moment.min.js](https://github.com/moment/moment/blob/develop/min/moment.min.js) (35K) as well as [angular-moment.min.js](https://github.com/urish/angular-moment/blob/master/angular-moment.min.js) (4.5K) purely for this functionality. 
+
+2. We didn't want to have to repeat the same format filter for every single date we were displaying. angular-contextual-date uses a service to allow default configurations that will apply across the board for certain scenarios. 
 
 <a name="examples"></a>
 ## Examples
