@@ -1,0 +1,10 @@
+{
+  "name": "angular-contextual-date-ghpages",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "angular-contextual-date": "~0.1.1"
+  }
+}
