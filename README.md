@@ -14,9 +14,9 @@ A lightweight Angular directive/filter/service to format a date so it displays a
 <a name="goals"></a>
 ## Goals
 The goals of this module are twofold:
-1. We did not want to use am-time-ago in [moment.js](http://momentjs.com) because while the library is great, we *really* didn't want to have to load all of [moment.min.js](https://github.com/moment/moment/blob/develop/min/moment.min.js) (35K) as well as [angular-moment.min.js](https://github.com/urish/angular-moment/blob/master/angular-moment.min.js) (4.5K) purely for this functionality. 
+1. We did not want to use am-time-ago in [moment.js](http://momentjs.com) because while the library is great, we *really* didn't want to have to load all of [moment.min.js](https://github.com/moment/moment/blob/develop/min/moment.min.js) (35.5K) as well as [angular-moment.min.js](https://github.com/urish/angular-moment/blob/master/angular-moment.min.js) (4.5K) purely for this functionality.  So we built a 3.5K library that does mostly the same thing, we think a little bit better.
 
-2. We didn't want to have to repeat the same format filter for every single date we were displaying. angular-contextual-date uses a service to allow default configurations that will apply across the board for certain scenarios. 
+2. We also didn't want to have to repeat the same format filter for every single date we were displaying across a site. We love the idea of "write once, use everywhere", so `angular-contextual-date` uses a service to allow default configurations that will apply across the board for certain scenarios, and then if you really need to change it you can always tweak the format on individual dates. 
 
 <a name="examples"></a>
 ## Examples

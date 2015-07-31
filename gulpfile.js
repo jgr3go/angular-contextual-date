@@ -9,6 +9,7 @@ var path = require('path');
 var open = require('open');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
+var rename = require('gulp-rename');
 
 var config = {
   source: ["src/*.module.js", "src/*.js"],
@@ -30,23 +31,23 @@ gulp.task('clean', function (done) {
 
 gulp.task('minify', function () {
   return gulp.src(config.source)
+    // combine all source into one file
+    .pipe(concat(config.dest.normal))
+    // write max version
+    .pipe(gulp.dest(config.dest.dir))
+    // build and write min version
     .pipe(sourcemaps.init())
     .pipe(uglify())
-    .pipe(concat(config.dest.min))
-    .pipe(sourcemaps.write())
+    // rename the file
+    .pipe(rename(config.dest.min))
+    // before writing the map (this splits the stream)
+    .pipe(sourcemaps.write("./"))
     .pipe(gulp.dest(config.dest.dir))
 });
 
-gulp.task('maxify', function () {
-  return gulp.src(config.source)
-    .pipe(sourcemaps.init())
-    .pipe(concat(config.dest.normal))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.dest.dir));
-});
 
 gulp.task('build', function (done) {
-  runSequence('clean', ['minify', 'maxify'], done);
+  runSequence('clean', ['minify'], done);
 });
 
 gulp.task('test', ['lint'], function (done) {
