@@ -2,6 +2,8 @@
 
 A lightweight Angular directive/filter/service to format a date so it displays a contextual relative time ("how long ago") in addition to the date. This is useful for things like feeds, emails, comments, etc. to show how recent the timestamp occurred in addition to simplifying the date display to a more relevant format.
 
+At it's simplest, it can be used out of the box as a filter: `<span>{{ someDate | contextualDate }}</span>`, but it's highly configurable via a service which is what the rest of this document describes. 
+
 * [Goals](#goals)
 * [Examples/Demo](#examples)
 * [Glossary](#glossary)
@@ -21,6 +23,7 @@ The goals of this module are twofold:
 
 <a name="examples"></a>
 ## Examples
+`contextual-date` changes the display format depending on how far away the date is relative to now. The formats are configurable, but the defaults should be good for most use-cases.
 
 ##### Past
 * 11:15 am (7 minutes ago)
@@ -100,7 +103,7 @@ contextualDateService.format($scope.myDate, "Mah date!!");
 
 <a name="configuration"></a>
 ## Configuration
-To configure the service, access the `.config` settings in code:  
+To configure the service, access the `.config` settings of the service in code:  
 ```javascript
 angular.controller('appCtrl', function (contextualDateService) {
   contextualDateService.config.<setting> = <value>;
@@ -110,17 +113,14 @@ angular.controller('appCtrl', function (contextualDateService) {
 The following settings can be configured:
 
 ### `config.hideFullDate`  
-Default: `false`
-```javascript
-contextualDateService.config.hideFullDate = true;
-```
-This will remove the `fullDate` portion of the `contextual-date`. Instead of `11:15 am (7 minutes ago)` it will display as `7 minutes ago`  
+Default: `false`  
+When this is true, it will remove the `fullDate` portion of the `contextual-date` and only show the `relativeDate`. Instead of `11:15 am (7 minutes ago)` it will display as `7 minutes ago`.
 
 ### `config.fullDateFormats`  
 `fullDateFormats` contains several formats for the `fullDate` component of a `contextual-date`.  They all use the [Angular `date` format](https://docs.angularjs.org/api/ng/filter/date) to generate the result.
 
 ```javascript
-contextualDateService.fullDateFormats.<option> = <format>;
+contextualDateService.config.fullDateFormats.<option> = <format>;
 ```
 
 |Option|Description|
@@ -136,16 +136,15 @@ contextualDateService.fullDateFormats.<option> = <format>;
 
 ### `config.contextualDateFormat`
 Default: `"%fullDate% (%relativeDate%)"`  
-This will set the `format` for the contextual date. It will replace `%fullDate%` and `%relativeDate%` with the `fullDate` and `relativeDate` components respectively. 
+This describes the display format for the full `contextual-date`. It will replace `%fullDate%` and `%relativeDate%` with the `fullDate` and `relativeDate` components respectively. 
 
 ### `config.language`
 Default: `en_US`  
-This will set the language `contextual-date` will use. See [Language Support](#languages) for the current languages supported. 
-
+This sets the language `contextual-date` will use. See [Language Support](#languages) for the current languages supported. 
 
 <a name="languages"></a>
 ## Language support
-Right now, `contextual-date` only supports `en_US`.  It was built to support multiple languages, so pull requests could add support for them -- see the [contextual-date.service.js](src/contextual-date.service.js) `language support` section.
+Right now, `contextual-date` only supports `en_US`.  It was built to easily support multiple languages, so pull requests or a discussion could add support for them very quickly -- see the [contextual-date.service.js](src/contextual-date.service.js) `language support` section for what's required.
 
 There are two ways it attempts to detect the language:  
 * Priority 1: service configuration 
