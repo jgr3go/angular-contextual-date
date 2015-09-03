@@ -17,17 +17,22 @@ The goals of this module are twofold:
 
 1. We did not want to use `am-time-ago` in [moment.js](http://momentjs.com) because while the library is great, we *really* didn't want to have to load all of [moment.min.js](https://github.com/moment/moment/blob/develop/min/moment.min.js) (35.5K) as well as [angular-moment.min.js](https://github.com/urish/angular-moment/blob/master/angular-moment.min.js) (4.5K) purely for this functionality.  So we built a 3.5K library that does mostly the same thing, we think a little bit better.  
 
-2. We also didn't want to have to repeat the same format filter for every single date we were displaying across a site. We love the idea of "write once, use everywhere", so `angular-contextual-date` uses a service to allow default configurations that will apply across the board for certain scenarios, and then if you really need to change it you can always tweak the format on individual dates. 
+2. We also didn't want to have to repeat the same format filter for every single date we were displaying across a site. We love DRY, so `angular-contextual-date` uses a service to allow configurations that will apply across the board for certain scenarios (one format for today, a different one for the last month, and then if you really need to change it you can always tweak the format on individual dates. 
 
 <a name="examples"></a>
 ## Examples
 
+##### Past
 * 11:15 am (7 minutes ago)
 * 8:00 am (3 hours ago)
 * Jul 25 at 2:38 pm (2 days ago)
 * Jul 15 at 10:00 am (1 week ago)
 * Mar 30 (4 months ago)
 * Jun 14, 2014 (1 year ago)
+
+##### Future
+* Jul 29 at 9:05 am (2 days from now)
+* Jul 29, 2016 (1 year from now)
 
 ## Demo
 See a working demo here: http://helioscene.github.io/angular-contextual-date/
@@ -48,7 +53,7 @@ See a working demo here: http://helioscene.github.io/angular-contextual-date/
 
 ### Filter
 ```html 
-<span>{{ myDate | hsContextualDate }}</span>
+<span>{{ myDate | contextualDate }}</span>
 ```  
 
 ### Element 
@@ -124,11 +129,14 @@ contextualDateService.fullDateFormats.<option> = <format>;
 
 |Option|Description|
 |:--|:--|
-|`today`|<span>Applied to dates up to one day prior<br/>Default: `"h:mm a"`<br/>Example: **2:38 pm**</span>|
-|`thisMonth`|<span>Applied to dates from one day to one month prior<br/>Default: `"MMM d 'at' h:mm a"`<br/>Example: **Jul 23 at 2:38 pm**</span>|
-|`thisYear`|<span>Applied to dates from one month to one year prior<br/>Default: `"MMM d"`<br/>Example: **Jul 14**</span>|
+|`today`|<span>Applied to dates with the same year, month, and date<br/>Default: `"h:mm a"`<br/>Example: **2:38 pm**</span>|
+|`thisMonth`|<span>Applied to dates from one day to ~one month prior<br/>Default: `"MMM d 'at' h:mm a"`<br/>Example: **Jul 23 at 2:38 pm**</span>|
+|`thisYear`|<span>Applied to dates from ~one month to ~one year prior<br/>Default: `"MMM d"`<br/>Example: **Jul 14**</span>|
 |`historical`|<span>Applied to dates over one year prior<br/>Default: `"MMM d, y"`<br/>Example: **Jul 14, 2014**</span>|
-  
+|`nextMonth`|<span>Applied to dates from one day to ~one month in the future<br/>Default: `"MMM d 'at' h:mm a"`<br/>Example: **Jul 23 at 2:38 pm**</span>|
+|`nextYear`|<span>Applied to dates from ~one month to ~one year in the future<br/>Default: `"MMM d, y"`<br/>Example: **Jul 23, 2016**</span>|
+|`future`|<span>Applied to dates over one year in the future<br/>Default: `"MMM d, y"`<br/>Example: **Jul 23, 2017**</span>|
+
 
 ### `config.contextualDateFormat`
 Default: `"%fullDate% (%relativeDate%)"`  
