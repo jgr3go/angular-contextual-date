@@ -17,7 +17,7 @@ The goals of this module are twofold:
 
 1. We did not want to use `am-time-ago` in [moment.js](http://momentjs.com) because while the library is great, we *really* didn't want to have to load all of [moment.min.js](https://github.com/moment/moment/blob/develop/min/moment.min.js) (35.5K) as well as [angular-moment.min.js](https://github.com/urish/angular-moment/blob/master/angular-moment.min.js) (4.5K) purely for this functionality.  So we built a 3.5K library that does mostly the same thing, we think a little bit better.  
 
-2. We also didn't want to have to repeat the same format filter for every single date we were displaying across a site. We love DRY, so `angular-contextual-date` uses a service to allow configurations that will apply across the board for certain scenarios (one format for today, a different one for the last month, and then if you really need to change it you can always tweak the format on individual dates. 
+2. We also didn't want to have to repeat the same format filter for every single date we were displaying across a site. We love DRY principles, so `angular-contextual-date` uses a service to allow configurations that will apply across the board for certain scenarios (e.g. one format for today, a different one for the last month), and then if you really need to change it you can always tweak the format on individual dates. 
 
 <a name="examples"></a>
 ## Examples
@@ -67,19 +67,15 @@ The element also takes in a `full-date-override` property if you want to overrid
 ```
 See the Service's [fullDateOverride](#fullDateOverride) section
 
-### Attribute
-```html
-<div contextual-date ng-attrs-datetime="myDate"></div>
-```
-Note: While you can technically do this, the Filter or Element methods are recommended, since transclusion isn't turned on for this directive, so if you add this to an element with content already in it it will replace the content. 
 
 ### Service
+You can also call the service directly if you want to do something else with the results
 ```javascript
 angular.controller('appCtrl', function ($scope, contextualDateService)) {
   // Get the contextual date
   var contextualDate = contextualDateService.format($scope.myDate);
 
-  // Get the formatted full date 
+  // Get the filtered full date 
   var fullDate = contextualDateService.formatFull($scope.myDate);
 
   // Get the relative date
@@ -104,7 +100,7 @@ contextualDateService.format($scope.myDate, "Mah date!!");
 
 <a name="configuration"></a>
 ## Configuration
-To configure the service, you can use the following code:  
+To configure the service, access the `.config` settings in code:  
 ```javascript
 angular.controller('appCtrl', function (contextualDateService) {
   contextualDateService.config.<setting> = <value>;
@@ -121,7 +117,7 @@ contextualDateService.config.hideFullDate = true;
 This will remove the `fullDate` portion of the `contextual-date`. Instead of `11:15 am (7 minutes ago)` it will display as `7 minutes ago`  
 
 ### `config.fullDateFormats`  
-`fullDateFormats` contains four formats for the `fullDate` component of a `contextual-date`.  They all use the [Angular `date` format](https://docs.angularjs.org/api/ng/filter/date) to generate the result.
+`fullDateFormats` contains several formats for the `fullDate` component of a `contextual-date`.  They all use the [Angular `date` format](https://docs.angularjs.org/api/ng/filter/date) to generate the result.
 
 ```javascript
 contextualDateService.fullDateFormats.<option> = <format>;
@@ -149,7 +145,7 @@ This will set the language `contextual-date` will use. See [Language Support](#l
 
 <a name="languages"></a>
 ## Language support
-Right now, `contextual-date` only supports `en_US`.  It was built to support multiple languages, so pull requests could add support for them.
+Right now, `contextual-date` only supports `en_US`.  It was built to support multiple languages, so pull requests could add support for them -- see the [src/contextual-date.service.js](contextual-date.service.js) `language support` section.
 
 There are two ways it attempts to detect the language:  
 * Priority 1: service configuration 
