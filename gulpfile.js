@@ -47,7 +47,7 @@ gulp.task('minify', function () {
 
 
 gulp.task('build', function (done) {
-  runSequence('clean', ['minify'], done);
+  runSequence('test', 'clean', ['minify'], done);
 });
 
 gulp.task('test', ['lint'], function (done) {

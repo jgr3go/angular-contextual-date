@@ -181,6 +181,14 @@ describe('contextualDateService', function () {
             expect(converted).toEqual(lang.now);
         });
 
+        it('should return future date', function () {
+            var date = new Date();
+            date.setDate(date.getDate() + 5);
+
+            var converted = contextualDateService.formatRelative(date);
+
+            expect(converted).toEqual([lang.futurePrefix, 5, lang.days, lang.futureSuffix].join(" ").trim());
+        })
 
         it('should return bad input untouched', function () {
             var date = "garbage";
@@ -222,6 +230,31 @@ describe('contextualDateService', function () {
             var historical = $filter('date')(date, contextualDateService.config.fullDateFormats.historical);
 
             expect(converted).toEqual(historical);
+        });
+
+        it('should format the next month format', function () {
+            var date = new Date();
+            date.setDate(date.getDate() + 3);
+            var converted = contextualDateService.formatFull(date);
+            var nextMonth = $filter('date')(date, contextualDateService.config.fullDateFormats.nextMonth);
+
+            expect(converted).toEqual(nextMonth);
+        });
+
+        it('should format the next year format', function () {
+            var date = new Date();
+            date.setDate(date.getDate() + 60);
+            var converted = contextualDateService.formatFull(date);
+            var nextYear = $filter('date')(date, contextualDateService.config.fullDateFormats.nextYear);
+            expect(converted).toEqual(nextYear);
+        });
+
+        it('should format the future format', function () {
+            var date = new Date();
+            date.setFullYear(date.getFullYear() + 2);
+            var converted = contextualDateService.formatFull(date);
+            var future = $filter('date')(date, contextualDateService.config.fullDateFormats.future);
+            expect(converted).toEqual(future);
         });
 
         it('should return bad input untouched', function () {
@@ -340,7 +373,7 @@ describe('contextualDateService', function () {
             expect(converted).toEqual("1 CONF");
         });
 
-        it("should ignore bad configurations", function () {
+        it("should ignore bad language configurations", function () {
             contextualDateService.config.language = "Garbage1";
             $document[0].documentElement.lang = "Garbage2";
 
