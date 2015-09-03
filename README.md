@@ -145,7 +145,7 @@ This will set the language `contextual-date` will use. See [Language Support](#l
 
 <a name="languages"></a>
 ## Language support
-Right now, `contextual-date` only supports `en_US`.  It was built to support multiple languages, so pull requests could add support for them -- see the [src/contextual-date.service.js](contextual-date.service.js) `language support` section.
+Right now, `contextual-date` only supports `en_US`.  It was built to support multiple languages, so pull requests could add support for them -- see the [contextual-date.service.js](src/contextual-date.service.js) `language support` section.
 
 There are two ways it attempts to detect the language:  
 * Priority 1: service configuration 
