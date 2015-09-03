@@ -161,6 +161,20 @@ contextualDateService.config.language = 'en_US';
 
 * Default: `en_US`
 
+<a name="languages-override"></a>
+## Language overrides
+You can override specific language settings at load/runtime by modifying the values. The most typical case for this will be if you want a different prefix/suffix on the `relativeDate`. These values are configured by the `prefix`, `suffix`, `futurePrefix`, and `futureSuffix` properties of each language. 
+
+For example, the default future date format is: `Jul 23 (5 days from now)`
+where `futurePrefix == ""` and `futureSuffix == "from now"`.  
+
+However, if you wanted this to display as `Jul 23 (in 5 days)`, you could set:
+```javascript
+contextualDateService.languages["en_US"].futurePrefix = "in";
+contextualDateService.languages["en_US"].futureSuffix = "";
+```
+and this would have the desired effect.  
+
 <a name="contact"></a>
 ## Contact
 Contact [Jon Gregorowicz](mailto:jon@helioscene.com) for any questions, or submit a pull request. 
