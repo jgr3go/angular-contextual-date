@@ -95,15 +95,23 @@ function contextualDateService ($filter, $document) {
 
             fullDateFormats : {
                 today: "h:mm a",
+
                 thisMonth: "MMM d 'at' h:mm a",
                 thisYear: "MMM d",
-                historical: "MMM d, y"
+                historical: "MMM d, y",
+
+                nextMonth: "MMM d 'at' h:mm a",
+                nextYear: "MMM d, y",
+                future: "MMM d, y"
             },
 
             contextualDateFormat: "%fullDate% (%relativeDate%)",
 
             language: null, // this will hard set the language
 
+            // These will determine the leniency given to assigning
+            // the values. e.g. a threshold of 0.75 for year means
+            // it will start saying "1 year ago" after 9 months
             thresholds: {
                 years: 1.75,
                 year: 0.75,
@@ -130,8 +138,11 @@ function contextualDateService ($filter, $document) {
 
                 now: "just now",
 
+                // for past/future
                 prefix: "",
                 suffix: "ago",
+                futurePrefix: "",
+                futureSuffix: "from now",
                 
                 millisecond: "millisecond",
                 milliseconds: "milliseconds",
@@ -177,9 +188,8 @@ function contextualDateService ($filter, $document) {
         }
 
         var formatter = service.config.contextualDateFormat;
-        var result = formatter
-                                        .replace('%fullDate%', fullDate)
-                                        .replace('%relativeDate%', relativeDate);
+        var result = formatter.replace('%fullDate%', fullDate)
+                              .replace('%relativeDate%', relativeDate);
 
         return result;
     }
@@ -189,36 +199,62 @@ function contextualDateService ($filter, $document) {
         if (isNaN(ldate)) { return date; }
 
         now = now || new Date();
+        var nowTime = now.getTime();
+        var ldateTime = ldate.getTime();
 
         var fullDate = "";
         var thresholds = service.config.thresholds;
 
+        // isFuture
+        var isFuture = (ldate.getTime() - now.getTime() > 0);
+
+        // current day
         var isToday = (ldate.getDate() === now.getDate() &&
                                         ldate.getMonth() === now.getMonth() &&
                                         ldate.getFullYear() === now.getFullYear());
         
-        var thisMonth = new Date(now.getTime());
-        thisMonth.setDate(thisMonth.getDate() - Math.round(thresholds.month * 31));
-        var isThisMonth = (ldate.getTime() - thisMonth.getTime() >= 0);
+        // month
+        var monthThreshold = Math.round(thresholds.month * 31);
+        var thisMonth = new Date(nowTime);
+        thisMonth.setDate(thisMonth.getDate() - monthThreshold);
+        var nextMonth = new Date(nowTime);
+        nextMonth.setDate(nextMonth.getDate() + monthThreshold);
+        var isThisMonth = (!isFuture && ldateTime - thisMonth.getTime() >= 0);
+        var isNextMonth = (isFuture && nextMonth.getTime() - ldateTime >= 0);
 
-        var thisYear = new Date(now.getTime());
-        thisYear.setDate(thisYear.getDate() - Math.round(thresholds.year * 365));
-        var isThisYear = (ldate.getTime() - thisYear.getTime() >= 0);
+        // year
+        var yearThreshold = Math.round(thresholds.year * 365);
+        var thisYear = new Date(nowTime);
+        thisYear.setDate(thisYear.getDate() - yearThreshold);
+        var nextYear = new Date(nowTime);
+        nextYear.setDate(nextYear.getDate() + yearThreshold);
+        var isThisYear = (!isFuture && ldateTime - thisYear.getTime() >= 0);
+        var isNextYear = (isFuture && nextYear.getTime() - ldateTime >= 0);
 
         var $dateFilter = $filter('date');
         var dateFormats = service.config.fullDateFormats;
 
         if (isToday) {
             fullDate = $dateFilter(ldate, dateFormats.today, timezone);
-        }
+        } 
         else if (isThisMonth) {
             fullDate = $dateFilter(ldate, dateFormats.thisMonth, timezone);
+        }
+        else if (isNextMonth) {
+            fullDate = $dateFilter(ldate, dateFormats.nextMonth, timezone);
         }
         else if (isThisYear) {
             fullDate = $dateFilter(ldate, dateFormats.thisYear, timezone);
         }
+        else if (isNextYear) {
+            fullDate = $dateFilter(ldate, dateFormats.nextYear, timezone);
+        }
         else {
-            fullDate = $dateFilter(ldate, dateFormats.historical, timezone);
+            if (isFuture) {
+                fullDate = $dateFilter(ldate, dateFormats.future, timezone);
+            } else {
+                fullDate = $dateFilter(ldate, dateFormats.historical, timezone);
+            }
         }
 
         return fullDate;
@@ -254,7 +290,7 @@ function contextualDateService ($filter, $document) {
         var lang = getLang();
         var diff = now.getTime() - ldate.getTime();
 
-        var milliseconds = diff;
+        var milliseconds = Math.abs(diff);
         var seconds = milliseconds / 1000;
         var minutes = seconds / 60;
         var hours = minutes / 60;
@@ -304,7 +340,11 @@ function contextualDateService ($filter, $document) {
         if (!relative) {
             relative = lang.now;
         } else {
-            relative = pad(lang.prefix, relative, lang.suffix);
+            if (diff >= 0) {
+                relative = pad(lang.prefix, relative, lang.suffix);
+            } else {
+                relative = pad(lang.futurePrefix, relative, lang.futureSuffix);
+            }
         }
 
         return relative;
