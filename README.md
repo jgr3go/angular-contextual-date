@@ -162,7 +162,7 @@ contextualDateService.config.language = 'en_US';
 * Default: `en_US`
 
 <a name="languages-override"></a>
-## Language overrides
+#### Language overrides
 You can override specific language settings at load/runtime by modifying the values. The most typical case for this will be if you want a different prefix/suffix on the `relativeDate`. These values are configured by the `prefix`, `suffix`, `futurePrefix`, and `futureSuffix` properties of each language. 
 
 For example, the default future date format is: `Jul 23 (5 days from now)`

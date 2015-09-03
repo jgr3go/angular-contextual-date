@@ -1,6 +1,6 @@
 {
   "name": "angular-contextual-date",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A lightweight Angular directive/filter/service to format a date so it displays a contextual relative time (\"how long ago\") in addition to the formatted normal date.",
   "main": "src/angular-contextual-date.module.js",
   "scripts": {
