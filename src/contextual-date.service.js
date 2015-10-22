@@ -54,8 +54,13 @@ function contextualDateService ($filter, $document) {
                 seconds: 2.0,
                 second: 1.0,
                 milliseconds: 2.0,
-                millisecond: 1.0
-            }
+                millisecond: 1.0,
+
+                // anything less than this threshold will use the text for 'now'
+                // e.g. 60000 will display 'just now' for any date within a minute
+                // of the current time
+                now: 0  // milliseconds
+            },
         },
 
         // language support
@@ -229,47 +234,51 @@ function contextualDateService ($filter, $document) {
 
         var th = service.config.thresholds;
 
-        if (years >= th.years) {
-            relative = pad(Math.round(years), lang.years);
-        } else if (years >= th.year) {
-            relative = pad(1, lang.year);
-        } else if (months >= th.months) {
-            relative = pad(Math.round(months), lang.months);
-        } else if (months >= th.month) {
-            relative = pad(1, lang.month);
-        } else if (weeks >= th.weeks) {
-            relative = pad(Math.round(weeks), lang.weeks);
-        } else if (weeks >= th.week) {
-            relative = pad(1, lang.week);
-        } else if (days >= th.days) {
-            relative = pad(Math.round(days), lang.days);
-        } else if (days >= th.day) {
-            relative = pad(1, lang.day);
-        } else if (hours >= th.hours) {
-            relative = pad(Math.round(hours), lang.hours);
-        } else if (hours >= th.hour) {
-            relative = pad(1, lang.hour);
-        } else if (minutes >= th.minutes) {
-            relative = pad(Math.round(minutes), lang.minutes);
-        } else if (minutes >= th.minute) {
-            relative = pad(1, lang.minute);
-        } else if (seconds >= th.seconds) {
-            relative = pad(Math.round(seconds), lang.seconds);
-        } else if (seconds >= th.second) {
-            relative = pad(1, lang.second);
-        } else if (milliseconds >= th.milliseconds) {
-            relative = pad(Math.round(milliseconds), lang.milliseconds);
-        } else if (milliseconds >= th.millisecond) {
-            relative = pad(1, lang.millisecond);
-        }
-
-        if (!relative) {
+        if (milliseconds <= th.now) {
             relative = lang.now;
         } else {
-            if (diff >= 0) {
-                relative = pad(lang.prefix, relative, lang.suffix);
+            if (years >= th.years) {
+                relative = pad(Math.round(years), lang.years);
+            } else if (years >= th.year) {
+                relative = pad(1, lang.year);
+            } else if (months >= th.months) {
+                relative = pad(Math.round(months), lang.months);
+            } else if (months >= th.month) {
+                relative = pad(1, lang.month);
+            } else if (weeks >= th.weeks) {
+                relative = pad(Math.round(weeks), lang.weeks);
+            } else if (weeks >= th.week) {
+                relative = pad(1, lang.week);
+            } else if (days >= th.days) {
+                relative = pad(Math.round(days), lang.days);
+            } else if (days >= th.day) {
+                relative = pad(1, lang.day);
+            } else if (hours >= th.hours) {
+                relative = pad(Math.round(hours), lang.hours);
+            } else if (hours >= th.hour) {
+                relative = pad(1, lang.hour);
+            } else if (minutes >= th.minutes) {
+                relative = pad(Math.round(minutes), lang.minutes);
+            } else if (minutes >= th.minute) {
+                relative = pad(1, lang.minute);
+            } else if (seconds >= th.seconds) {
+                relative = pad(Math.round(seconds), lang.seconds);
+            } else if (seconds >= th.second) {
+                relative = pad(1, lang.second);
+            } else if (milliseconds >= th.milliseconds) {
+                relative = pad(Math.round(milliseconds), lang.milliseconds);
+            } else if (milliseconds >= th.millisecond) {
+                relative = pad(1, lang.millisecond);
+            }
+
+            if (!relative) {
+                relative = lang.now;
             } else {
-                relative = pad(lang.futurePrefix, relative, lang.futureSuffix);
+                if (diff >= 0) {
+                    relative = pad(lang.prefix, relative, lang.suffix);
+                } else {
+                    relative = pad(lang.futurePrefix, relative, lang.futureSuffix);
+                }
             }
         }
 

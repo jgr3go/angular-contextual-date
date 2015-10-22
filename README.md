@@ -37,6 +37,9 @@ The goals of this module are twofold:
 * Jul 29 at 9:05 am (2 days from now)
 * Jul 29, 2016 (1 year from now)
 
+##### Present
+* Jul 29 at 9:05 am (just now)
+
 ## Demo
 See a working demo here: http://helioscene.github.io/angular-contextual-date/
 
@@ -133,6 +136,9 @@ contextualDateService.config.fullDateFormats.<option> = <format>;
 |`nextYear`|<span>Applied to dates from ~one month to ~one year in the future<br/>Default: `"MMM d, y"`<br/>Example: **Jul 23, 2016**</span>|
 |`future`|<span>Applied to dates over one year in the future<br/>Default: `"MMM d, y"`<br/>Example: **Jul 23, 2017**</span>|
 
+### `config.thresholds.now`  
+Default: `0` (milliseconds)  
+Threshold that "just now" will be displayed until before the other descriptions take over.  For instance, if there is a date representing 600 milliseconds ago, the default configuration will display the `relativeDate` as "600 milliseconds ago".  However, if this is set to `60000`, it will display "just now" until one minute ago, and then display "1 minute ago".
 
 ### `config.contextualDateFormat`
 Default: `"%fullDate% (%relativeDate%)"`  
