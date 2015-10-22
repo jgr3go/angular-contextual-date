@@ -43,7 +43,9 @@ function appCtrl (contextualDateService) {
         vm.examples.push(now.setMonth(now.getMonth() + 2));
         vm.examples.push(now.setFullYear(now.getFullYear() + 5));
 
+        vm.config = contextualDateService.config;
     }
+
 }
 
 })();

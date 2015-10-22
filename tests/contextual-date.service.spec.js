@@ -304,6 +304,10 @@ describe('contextualDateService', function () {
             spyOn(contextualDateService, "formatRelative").and.callThrough();
         });
 
+        afterEach(function () {
+            contextualDateService.config.thresholds.now = 0;
+        });
+
         it('should only display the relative format', function () {
             var date = new Date();
             date.setDate(date.getDate() - 1);
@@ -338,6 +342,19 @@ describe('contextualDateService', function () {
             expect(rel1).not.toEqual(rel2);
             expect(rel1).toEqual([lang.prefix, 1, lang.week, lang.suffix].join(" ").trim());
             expect(rel2).toEqual([lang.prefix, 8, lang.days, lang.suffix].join(" ").trim());
+        });
+
+        it('should modify the now threshold', function () {
+            var date = new Date();
+            date.setSeconds(date.getSeconds() - 30);
+            contextualDateService.config.thresholds.now = 1000 * 60;
+
+            var rel = contextualDateService.formatRelative(date);
+            expect(rel).toEqual(lang.now);
+
+            date.setSeconds(date.getSeconds() - 31);
+            rel = contextualDateService.formatRelative(date);
+            expect(rel).toEqual([lang.prefix, 1, lang.minute, lang.suffix].join(" ").trim());
         });
 
         it('should take language from DOM', function () {
