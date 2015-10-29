@@ -88,6 +88,7 @@ function contextualDateService ($filter, $document) {
         formatRelative: formatRelative,
         formatFull: formatFull,
         parseDate: parseDate,
+        invalidate: invalidate,
 
         // configurations
         config: {
@@ -135,6 +136,11 @@ function contextualDateService ($filter, $document) {
                 // of the current time
                 now: 0  // milliseconds
             },
+
+            // The buffer time to re-calculate the relative time.  This prevents
+            // the digest loop from calculating a different value the next time it
+            // runs for dates which are very close to now.
+            buffer: 250  // milliseconds
         },
 
         // language support
@@ -169,7 +175,24 @@ function contextualDateService ($filter, $document) {
         }
     };
 
+    var previousNow;
+
     return service;
+
+    function invalidate () {
+        previousNow = null;
+    }
+
+    function getNow (now) {
+        now = now || new Date();
+        previousNow = previousNow || new Date();
+        if (now.getTime() - service.config.buffer < previousNow.getTime()) {
+            now = previousNow;
+        } else {
+            previousNow = now;
+        }
+        return now;
+    }
 
     function format (date, fullDateOverride, timezone) {
         var ldate = service.parseDate(date);
@@ -177,7 +200,7 @@ function contextualDateService ($filter, $document) {
         // We weren't able to parse the date, just return as is
         if (isNaN(ldate)) { return date; }
 
-        var now = new Date();
+        var now = getNow();
         var fullDate, relativeDate;
 
         relativeDate = service.formatRelative(ldate, now);
@@ -203,7 +226,7 @@ function contextualDateService ($filter, $document) {
         var ldate = service.parseDate(date);
         if (isNaN(ldate)) { return date; }
 
-        now = now || new Date();
+        now = getNow(now);
         var nowTime = now.getTime();
         var ldateTime = ldate.getTime();
 
@@ -290,7 +313,7 @@ function contextualDateService ($filter, $document) {
     function formatRelative(date, now) {
         var ldate = service.parseDate(date);
         if (isNaN(ldate)) { return date; }
-        now = now || new Date();
+        now = getNow(now);
 
         var lang = getLang();
         var diff = now.getTime() - ldate.getTime();
