@@ -2,16 +2,22 @@
 describe('contextualDateService', function () {
 
     var lang;
+    var configBuffer;
 
     beforeEach(function () {
         bard.appModule('angular-contextual-date');
         bard.inject(this, 'contextualDateService', '$filter', '$document');
 
         lang = contextualDateService.languages.en_US;
+        
+        // cache the original buffer
+        configBuffer = contextualDateService.config.buffer;
+        // and set it to 0 so tests are more accurate
+        contextualDateService.config.buffer = 0;
+        contextualDateService.invalidate(); 
     });
 
     describe('parse tests', function () {
-
         it('should parse a Date', function () {
             var date = new Date();
             var parsed = contextualDateService.parseDate(date);
@@ -295,6 +301,14 @@ describe('contextualDateService', function () {
         });
     });
 
+    describe("invalidate", function () {
+        it("should invalidate any cached values", function () {
+            var date = new Date();
+            contextualDateService.invalidate();
+            // not entirely sure how to test this though
+        });
+    });
+
     describe('configuration tests', function () {
 
         var formatFullSpy, formatRelativeSpy;
@@ -305,7 +319,10 @@ describe('contextualDateService', function () {
         });
 
         afterEach(function () {
+            // set to the original values pre-tests
             contextualDateService.config.thresholds.now = 0;
+            contextualDateService.config.buffer = 0;
+            contextualDateService.invalidate();
         });
 
         it('should only display the relative format', function () {
@@ -399,6 +416,35 @@ describe('contextualDateService', function () {
             var converted = contextualDateService.formatRelative(date);
 
             expect(converted).toEqual("1 day ago");
+        });
+
+        it("should buffer the resulting calls", function () {
+
+            expect(configBuffer).toEqual(250);
+            contextualDateService.config.buffer = configBuffer;
+            contextualDateService.invalidate();
+
+            // trigger this call in 250 ms so cached time is really old
+            var ms10 = [lang.prefix, 10, lang.milliseconds, lang.suffix].join(" ").trim();
+            var ms260 = [lang.prefix, 260, lang.milliseconds, lang.suffix].join(" ").trim();
+            var date = new Date();
+            var now = new Date(date);
+
+            // make sure it's 10 ms ago
+            date.setMilliseconds(date.getMilliseconds() - 10);
+            var rel1 = contextualDateService.formatRelative(date, now);
+            expect(rel1).toEqual(ms10);
+
+            // increase but still under buffer
+            now.setMilliseconds(now.getMilliseconds() + 100);
+            var rel2 = contextualDateService.formatRelative(date, now);
+            expect(rel2).toEqual(ms10);
+
+            // increase above buffer
+            now.setMilliseconds(now.getMilliseconds() + 150);
+            var rel3 = contextualDateService.formatRelative(date, now);
+            expect(rel3).toEqual(ms260);
+
         });
     });
 
