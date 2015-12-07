@@ -182,7 +182,7 @@ and this would have the desired effect.
 
 <a name="contact"></a>
 ## Contact
-Contact [Jon Gregorowicz](mailto:jon@helioscene.com) for any questions, or submit a pull request. 
+Contact [Jon Gregorowicz](mailto:jon.gregorowicz@gmail.com) for any questions, or submit a pull request. 
 
 <a name="contributing"></a>
 ## Contributing
